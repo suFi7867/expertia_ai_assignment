@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Login() {
 
     let initialValue = {
-        email : "" ,
+        username : "" ,
         password : ""
     }
     const [userData, setUserData] = useState(initialValue)
@@ -44,9 +44,9 @@ export default function Login() {
                       </label>
                       <input 
                       onChange={handleChange}
-                      value={userData.email}
-                      name="email"
-                      style={{border:"0.5px solid"}} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] rounded-[6px] focus:outline-none" id="username" type="email" placeholder="Username"/>
+                      value={userData.username}
+                      name="username"
+                          style={{ border: "0.5px solid" }} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] rounded-[6px] focus:outline-none" id="username" type="name" placeholder="Enter your user name"/>
                   </div>
 
                   <div className="mb-4">
@@ -57,7 +57,7 @@ export default function Login() {
                       onChange={handleChange}
                       value={userData.password}
                       name="password"
-                      style={{border:"0.5px solid"}} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] rounded-[6px] focus:outline-none" id="username" type="text" placeholder="Username" />
+                          style={{ border: "0.5px solid" }} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] rounded-[6px] focus:outline-none"  type="text" placeholder="Enter your Password" />
                   </div>
 
 
