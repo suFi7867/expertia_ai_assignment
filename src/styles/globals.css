@@ -74,5 +74,11 @@ a {
   text-decoration: none;
 }
 
+input {
+  background: #FFFFFF;
+    border: 0.6px solid #282828;
+    border-radius: 6px;
+}
+
 
 
