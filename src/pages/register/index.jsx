@@ -102,7 +102,7 @@ export default function Register() {
             </div>
 
 
-            <img className="bg-cover bg-center hidden lg:block width-[100%] lg:w-[50%]" src='./image.svg' />
+            <img className="bg-cover bg-center hidden lg:block w-[100%] scale-125 lg:w-[50%]" src='./image.svg' /> 
 
 
         </div>
