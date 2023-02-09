@@ -2,10 +2,21 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
+import Link from "next/link"
 
-const inter = Inter({ subsets: ['latin'] })
+
+
+
 
 export default function Home() {
+
+  const data = [
+    "Take the dog for a walk",
+    "Cook breakfast",
+    "Finish pending tasks for the project"
+  ]
+
+
   return (
     <div className='relative flex w overflow-hidden text-left text-base text-black font-poppins justify-center max-w-[1200px] md-w-'>
 
@@ -18,6 +29,21 @@ export default function Home() {
         </div>
 
 
+        <p className='text-[16px] mt-[20px] font-bold'>Tasks for 24th Dec, 2022 :</p>
+
+        <div className='p-5'>
+          <ul className='list-disc'>
+            {
+              data.map((el) => (
+                <li className='text-[16px]'>{el}</li>
+              ))
+            }
+          </ul>
+        </div>
+
+
+  {/* position absolute  */}
+
         <div className='absolute mt-[50px] bottom-0 w-[85%] justifycontent-center text-center'>
             <input
             style={{ border: "0.5px solid" }} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] mb-3 rounded-[6px] focus:outline-none" id="username" type="name" placeholder="Eg. Need to finish my assignment . . ." />
@@ -27,11 +53,11 @@ export default function Home() {
             Add New Task
           </button>
 
-          <button
+          <Link href="/register"> <button
             className='mb-8 w-[100px]  text-[18px] w-[100%] rounded-[6px] justify-self-center hover:scale-125'>
             Logout
           </button>
-
+          </Link> 
         
 
         </div>
