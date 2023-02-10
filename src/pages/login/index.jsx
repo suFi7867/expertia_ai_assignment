@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 import Link from "next/link";
+import MainImage from '@/components/MainImage';
+import authService from '@/services/authServices';
+import { useRouter } from 'next/router';
+import LoadingIndicator from '@/components/LoadingIndicator';
 
 
 export default function Login() {
@@ -9,6 +13,8 @@ export default function Login() {
         password : ""
     }
     const [userData, setUserData] = useState(initialValue)
+    const [loading, setLoading] = useState(false)
+    const router = useRouter();
 
     const handleChange = (e) => {
 
@@ -19,11 +25,23 @@ export default function Login() {
     };
 
     const LoginFunction = ()=> {
-        console.log(userData)
+
+        if (userData.username == "" || userData.password == "")
+        return alert("Enter Valid credentials")
+        
+        setLoading(true)
+        authService.loginUser(userData)
+        .then((res)=>{
+            if (res == 200){ 
+                router.push("/");
+            }
+            setLoading(false)
+        })
+
         setUserData(initialValue)
     }
 
-
+ if(loading) return <LoadingIndicator/>
 
   return (
       <div className='flex w overflow-hidden text-left text-base text-black font-poppins justify-center max-w-[1200px] md-w-'>
@@ -35,7 +53,6 @@ export default function Login() {
                   <h1 className='text-[31px]' >Sign in to </h1>
                   <p>Lorem Ipsum is simply </p>
              </div>
-
 
              <div className='mt-[50px]'>
                   <div className="mb-10">
@@ -84,7 +101,7 @@ export default function Login() {
          </div>
 
 
-          <img className="bg-cover bg-center hidden lg:block w-[100%] scale-125 lg:w-[50%]" src='./image.svg' /> 
+         <MainImage/>
 
 
        </div>

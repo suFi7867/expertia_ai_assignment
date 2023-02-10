@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import Link from "next/link";
+import MainImage from '../../components/MainImage';
+import { useRouter } from 'next/router';
+import authService from '@/services/authServices';
 
 
 export default function Register() {
@@ -11,6 +14,8 @@ export default function Register() {
         confirmPass: ""
     }
     const [userData, setUserData] = useState(initialValue)
+    const [loading, setLoading] = useState(false)
+    const router = useRouter();
 
     const handleChange = (e) => {
 
@@ -21,8 +26,24 @@ export default function Register() {
     };
 
     const RefisterFunction = () => {
-        console.log(userData)
-        setUserData(initialValue)
+
+        if (userData.email == "" || userData.password == "" || userData.username == "" || userData.confirmPass == "" )
+        return alert("Enter Valid credentials")
+
+        if (userData.password != userData.confirmPass)
+        return alert("Both password not matching")
+        
+
+       setLoading(true)
+       authService.registerUser(userData)
+           .then((res) => {
+               if (res == 200) {
+                   router.push("/");
+               }
+               setLoading(false)
+           })
+
+       setUserData(initialValue)
     }
 
 
@@ -85,8 +106,6 @@ export default function Register() {
                             style={{ border: "0.5px solid" }} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] rounded-[6px] focus:outline-none"  type="password" placeholder="Confirm your password" />
                     </div>
 
-
-
                     <button onClick={RefisterFunction}
                         className='mt-5 mb-6 bg-black text-white text-[20px] w-[100%] p-5 rounded-[6px]'>
                         Register
@@ -101,10 +120,7 @@ export default function Register() {
 
             </div>
 
-
-
-            <img className="bg-cover bg-center hidden lg:block w-[100%] scale-125 lg:w-[50%]" src='./image.svg' /> 
-
+            <MainImage/>
 
         </div>
     )
