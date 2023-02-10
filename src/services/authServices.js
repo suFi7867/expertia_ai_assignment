@@ -61,8 +61,12 @@ const loginUser = async (userData) => {
    
 };
 
-const logoutUser = () => {
-    localStorage.removeItem("user");
+const logoutUser = async () => {
+    Cookies.remove("jwt")
+    Cookies.remove("username")
+    Cookies.remove("id")
+    alert("LogOut Successfull")
+    return 200
 };
 
 const authService = {

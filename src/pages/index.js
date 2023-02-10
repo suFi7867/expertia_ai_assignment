@@ -1,8 +1,11 @@
 
+import LoadingIndicator from "@/components/LoadingIndicator"
+import authService from "@/services/authServices"
 import taskService from "@/services/taskServices"
 import Cookies from "js-cookie"
 import Link from "next/link"
-import { useEffect } from "react"
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
 
 
 export default function Home({user}) {
@@ -12,9 +15,28 @@ export default function Home({user}) {
     "Cook breakfast",
     "Finish pending tasks for the project"
   ]
+  const [loading, setLoading] = useState(false)
+  const router = useRouter()
+  
 
   console.log(user)
 
+  const LogOut = ()=>{
+
+    setLoading(true)
+
+    authService.logoutUser()
+    .then((res)=> {
+      if(res == 200){
+        setLoading(false)
+        router.push("/register");
+      } 
+    })
+    
+  }
+
+
+  if (loading) return <LoadingIndicator />
 
   return (
     <div className='relative flex w overflow-hidden text-left text-base text-black font-poppins justify-center max-w-[1200px] md-w-'>
@@ -52,11 +74,12 @@ export default function Home({user}) {
             Add New Task
           </button>
 
-          <Link href="/register"> <button
+           <button
+            onClick={LogOut}
             className='mb-8 w-[100px]  text-[18px] w-[100%] rounded-[6px] justify-self-center hover:scale-125'>
             Logout
           </button>
-          </Link> 
+         
         
 
         </div>
@@ -99,4 +122,4 @@ export default function Home({user}) {
 // npm install - D tailwindcss postcss autoprefixer
 // npx tailwindcss init - p
 // npm i axios
-// npm i js-cookie
+// npm i js-cookie jsonwebtoken

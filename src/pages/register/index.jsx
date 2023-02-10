@@ -3,6 +3,7 @@ import Link from "next/link";
 import MainImage from '../../components/MainImage';
 import { useRouter } from 'next/router';
 import authService from '@/services/authServices';
+import LoadingIndicator from '@/components/LoadingIndicator';
 
 
 export default function Register() {
@@ -33,8 +34,8 @@ export default function Register() {
         if (userData.password != userData.confirmPass)
         return alert("Both password not matching")
         
-
        setLoading(true)
+
        authService.registerUser(userData)
            .then((res) => {
                if (res == 200) {
@@ -46,7 +47,7 @@ export default function Register() {
        setUserData(initialValue)
     }
 
-
+    if (loading) return <LoadingIndicator />
 
     return (
         <div className='flex w overflow-hidden text-left text-base text-black font-poppins justify-center max-w-[1200px] md-w-'>
