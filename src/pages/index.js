@@ -1,5 +1,8 @@
 
+import taskService from "@/services/taskServices"
+import Cookies from "js-cookie"
 import Link from "next/link"
+import { useEffect } from "react"
 
 
 export default function Home() {
@@ -10,6 +13,11 @@ export default function Home() {
     "Finish pending tasks for the project"
   ]
 
+  useEffect(() => {
+    taskService.getTasks(Cookies.get("jwt"), Cookies.get("id"))
+      .then((res) => console.log(res))
+
+  }, [])
 
   return (
     <div className='relative flex w overflow-hidden text-left text-base text-black font-poppins justify-center max-w-[1200px] md-w-'>
@@ -58,10 +66,6 @@ export default function Home() {
 
       </div>
 
-
-     
-
-
     </div>
   )
 }
@@ -73,4 +77,4 @@ export default function Home() {
 // npm install - D tailwindcss postcss autoprefixer
 // npx tailwindcss init - p
 // npm i axios
-
+// npm i js-cookie

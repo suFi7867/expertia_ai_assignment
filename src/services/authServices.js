@@ -15,6 +15,7 @@ const registerUser = async (userData) => {
         if (res.status == 200) {
             Cookies.set("jwt", res.data.token)
             Cookies.set("username", res.data.username)
+            Cookies.set("id", res.data.id)
             alert("Signup Successfull")
             return res.status;
         }
@@ -40,6 +41,7 @@ const loginUser = async (userData) => {
         if (res.status == 200) {
             Cookies.set("jwt", res.data.token)
             Cookies.set("username", res.data.username)
+            Cookies.set("id", res.data.id)
             alert("Login Successfull")
             return res.status;
         }

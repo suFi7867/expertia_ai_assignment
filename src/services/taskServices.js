@@ -1,14 +1,23 @@
 import axios from "axios";
 import { BASE_URL } from "../utils";
 
-const getTasks = async (token) => {
+const getTasks = async (token, id) => {
+    
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     };
-    const response = await axios.get(`${BASE_URL}/rest/todos/`, config);
-    return response.data;
+
+    if(id){
+        const res = await axios.get(`${BASE_URL}/user/task/${id}`, config);
+        return res.data;
+    }
+
+    const res = await axios.get(`${BASE_URL}/user/task`, config);
+    return res.data;
+    
+    
 };
 
 const addTasks = async (todo, token) => {

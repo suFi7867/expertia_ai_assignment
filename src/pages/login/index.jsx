@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from "next/link";
 import MainImage from '@/components/MainImage';
 import authService from '@/services/authServices';
 import { useRouter } from 'next/router';
 import LoadingIndicator from '@/components/LoadingIndicator';
+
 
 
 export default function Login() {
@@ -39,7 +40,10 @@ export default function Login() {
         })
 
         setUserData(initialValue)
+     
     }
+
+   
 
  if(loading) return <LoadingIndicator/>
 
