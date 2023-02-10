@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useEffect } from "react"
 
 
-export default function Home() {
+export default function Home({user}) {
 
   const data = [
     "Take the dog for a walk",
@@ -13,11 +13,8 @@ export default function Home() {
     "Finish pending tasks for the project"
   ]
 
-  useEffect(() => {
-    taskService.getTasks(Cookies.get("jwt"), Cookies.get("id"))
-      .then((res) => console.log(res))
+  console.log(user)
 
-  }, [])
 
   return (
     <div className='relative flex w overflow-hidden text-left text-base text-black font-poppins justify-center max-w-[1200px] md-w-'>
@@ -68,6 +65,31 @@ export default function Home() {
 
     </div>
   )
+}
+
+
+// this function will call before redering
+export const getServerSideProps = async (context) => {
+
+  let response = "ss"
+  let flag = false
+ 
+    taskService.getTasks(Cookies.get("jwt"), Cookies.get("id"))
+    .then((res) => {
+      response = res.tasks
+      return flag = true
+    })
+  
+  if (flag){
+    console.log(response)
+    return {
+      props: {
+        user: response
+      }
+    }
+
+  }
+
 }
 
 
