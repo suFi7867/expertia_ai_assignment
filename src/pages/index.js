@@ -69,28 +69,28 @@ export default function Home({user}) {
 
 
 // this function will call before redering
-export const getServerSideProps = async (context) => {
+// export const getServerSideProps = async (context) => {
 
-  let response = "ss"
-  let flag = false
+//   let response = "ss"
+//   let flag = false
  
-    taskService.getTasks(Cookies.get("jwt"), Cookies.get("id"))
-    .then((res) => {
-      response = res.tasks
-      return flag = true
-    })
+//     taskService.getTasks(Cookies.get("jwt"), Cookies.get("id"))
+//     .then((res) => {
+//       response = res.tasks
+//       return flag = true
+//     })
   
-  if (flag){
-    console.log(response)
-    return {
-      props: {
-        user: response
-      }
-    }
+//   if (flag){
+//     console.log(response)
+//     return {
+//       props: {
+//         user: response
+//       }
+//     }
 
-  }
+//   }
 
-}
+// }
 
 
 
