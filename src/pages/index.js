@@ -166,11 +166,12 @@ export const getServerSideProps = async reqs => {
   const res = await taskService.getTasks(jwt, id);
   let dates = taskService.CurrDate()
 
+  console.log(res)
   
   if (res == 400) { // error handling
     return {
       props: {
-        dailyTask: [],
+        dailyTask: null,
         userName: "",
         isloading: false
       }

@@ -12,16 +12,16 @@ export default function middleware(req) {
    //     return NextResponse.redirect("http://localhost:3000/login");
    // }
 
-    if (!verify && url === "http://localhost:3000/") {
-        return NextResponse.redirect("http://localhost:3000/login");
+    if (!verify && url === "https://sufi-expertia-ais.vercel.app/") {
+        return NextResponse.redirect("https://sufi-expertia-ais.vercel.app/login");
     }
 
-    if (verify && url === "http://localhost:3000/login") {
-        return NextResponse.redirect("http://localhost:3000");
+    if (verify && url === "https://sufi-expertia-ais.vercel.app/login") {
+        return NextResponse.redirect("https://sufi-expertia-ais.vercel.app");
     }
 
-    if (verify && url === "http://localhost:3000/register") {
-        return NextResponse.redirect("http://localhost:3000");
+    if (verify && url === "https://sufi-expertia-ais.vercel.app/register") {
+        return NextResponse.redirect("https://sufi-expertia-ais.vercel.app");
     }
 
 }

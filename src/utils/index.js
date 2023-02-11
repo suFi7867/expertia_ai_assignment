@@ -1,2 +1,2 @@
-const BASE_URL = "http://localhost:3005"
+const BASE_URL = "https://sufi-expertia-ai.onrender.com"
 export { BASE_URL }
