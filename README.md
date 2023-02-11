@@ -91,12 +91,8 @@
     <td><img src="https://i.ibb.co/JtK8sw0/Capture5.png"  alt="women" /></td>
     <td><img src="https://i.ibb.co/FVS3nXC/Capture555.png"  alt="kids" /></td>
   </tr>
-   <tr>
-   <td><img src="https://i.ibb.co/yPfkHzD/Capture55.png"   alt="kids" /></td>
-    <td><img src="https://i.ibb.co/yPfkHzD/Capture55.png"   alt="kids" /></td>
-  </tr>
- 
    
+
 
 </table>
 
