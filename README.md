@@ -82,8 +82,9 @@
     <td><img maxW="50%" src="https://i.ibb.co/7y8qFdD/Capture2.png"  alt="coupons" /></td>
   </tr>
   <tr>
+  <td><img src="https://i.ibb.co/Jc3xXfy/Capture4.png"  alt="men" /></td>
    <td><img src="https://i.ibb.co/CJdBMPq/Capture3.png"  alt="allProducts" /></td>
-    <td><img src="https://i.ibb.co/Jc3xXfy/Capture4.png"  alt="men" /></td>
+    
   </tr>
  
   <tr>
@@ -91,7 +92,7 @@
     <td><img src="https://i.ibb.co/FVS3nXC/Capture555.png"  alt="kids" /></td>
   </tr>
    <tr>
-   
+   <td><img src="https://i.ibb.co/yPfkHzD/Capture55.png"   alt="kids" /></td>
     <td><img src="https://i.ibb.co/yPfkHzD/Capture55.png"   alt="kids" /></td>
   </tr>
  
