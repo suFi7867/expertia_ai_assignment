@@ -97,7 +97,7 @@ export default function Register() {
                     </div>
 
                     <div className="mb-4">
-                        <label className="block text-sm font-bold mb-2 text-[16px] font-normal" for="User Name">
+                        <label className="block text-sm font-bold mb-2 text-[16px] font-normal" >
                            Confirm Password
                         </label>
                         <input

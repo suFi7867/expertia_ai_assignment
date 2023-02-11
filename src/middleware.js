@@ -1,22 +1,29 @@
-import Cookies from "js-cookie"
-import { NextResponse } from 'next/server'
+import { NextResponse } from "next/server";
 
-// This function can be marked `async` if using `await` inside
-export function middleware(req) {
+// To Handle Private Routes
+export default function middleware(req) {
 
+    let verify = req.cookies.get("jwt")?.value;
+  
+    let url = req.url
+    //console.log(url)
 
-//   const jwt = Cookies.get("jwt")
-//   const url = req.url
-//   console.log(jwt,
-// url)
+   // if (!verify && url.includes('/dashboard')) {
+   //     return NextResponse.redirect("http://localhost:3000/login");
+   // }
 
-//   if (url.includes("")) {
+    if (!verify && url === "http://localhost:3000/") {
+        return NextResponse.redirect("http://localhost:3000/login");
+    }
 
-   
+    if (verify && url === "http://localhost:3000/login") {
+        return NextResponse.redirect("http://localhost:3000");
+    }
 
-//   }
-//   return NextResponse.redirect("/login")
-//   return NextResponse.next()
-//   return NextResponse.next()
+    if (verify && url === "http://localhost:3000/register") {
+        return NextResponse.redirect("http://localhost:3000");
+    }
+
 }
+
 

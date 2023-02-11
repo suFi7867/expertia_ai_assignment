@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Link from "next/link";
 import MainImage from '@/components/MainImage';
 import authService from '@/services/authServices';
@@ -17,19 +17,20 @@ export default function Login() {
     const [loading, setLoading] = useState(false)
     const router = useRouter();
 
+    // To update the form
     const handleChange = (e) => {
-
         const { name: key, value, type, checked } = e.target;
         const val = type === "checkbox" ? checked : value;
         setUserData({ ...userData, [key]: val });
 
     };
 
+   // To Login User
     const LoginFunction = ()=> {
 
         if (userData.username == "" || userData.password == "")
         return alert("Enter Valid credentials")
-        
+    
         setLoading(true)
         authService.loginUser(userData)
         .then((res)=>{
@@ -38,13 +39,11 @@ export default function Login() {
             }
             setLoading(false)
         })
-
+        
         setUserData(initialValue)
-     
     }
 
    
-
  if(loading) return <LoadingIndicator/>
 
   return (
@@ -60,7 +59,7 @@ export default function Login() {
 
              <div className='mt-[50px]'>
                   <div className="mb-10">
-                      <label className="block text-sm font-bold mb-2 text-[16px] font-normal" for="User Name">
+                      <label className="block text-sm font-bold mb-2 text-[16px] font-normal">
                           User Name
                       </label>
                       <input 
@@ -71,7 +70,7 @@ export default function Login() {
                   </div>
 
                   <div className="mb-4">
-                      <label className="block text-sm font-bold mb-2 text-[16px] font-normal" for="User Name">
+                      <label className="block text-sm font-bold mb-2 text-[16px] font-normal">
                           Password
                       </label>
                       <input
