@@ -38,158 +38,68 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="vercel" />
-  <img src="https://img.shields.io/badge/Render-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="heroku" />
+  <img src="https://img.shields.io/badge/Render-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="render" />
 </p>
 
 
 
-<h3 align="center"><a href="https://justshop-unit5-project.netlify.app/"><strong>Want to see live preview »</strong></a></h3>
-
-<h3 align="center"><a href="https://www.linkedin.com/feed/update/urn:li:activity:6997582095241875457/"><strong>Demo Video »</strong></a></h3>
-
-
-<br />
-
-<p align="center">
-  <br />&#10023;
-  <a href="#Demo">View Demo</a> &#10023;
-  <a href="#Getting-Started">Getting Started</a> &#10023; 
-  <a href="#Install">Installing</a> &#10023;
-  <a href="#Contact">Author</a> &#10023;
-</p>
-
-It’s Group project where we've used MERN stack to make the JustShop.com with our creativity along with frontend and backend integration
-its Fully Responsive e-commerce web application that allows you to buy shoes & clothes online. It has a variety of categories, just visit the product listing page and you will see all the products, apply filters as per your need and in just a few clicks you can buy any products from the website. This project is just for educational purpose.
-
-<img src="https://i.ibb.co/K7qkkS3/final-637365106051e10025683e17-519389.gif" width="800px" />
-
+<h3 align="center"><a href="https://sufi-expertia-ais.vercel.app/"><strong>Want to see live preview »</strong></a></h3>
 
 <br />
 
 ## Screens 
-- Homepage / Landing Page
-- Product Listing Page with all categories
-- Product Description Page
-- Cart Management Page
-- Checkout with Address Management Page
-- Login / Logout Page
-- Order Summary Page
-- Single Product Page
-
-
+- Dashboard
+- Login
+- Register
 
 <br />
 
-
-## 🚀 Admin Features
-- All Statistics and Revenue Generated 
-- All Users Data
-- Can Delete Product From DB
-- Can Add Product to DB
- 
-## 🚀 User Features
+## 🚀 Features
 - Login and Signup User Account
-- Product Sorting Based on Price, Rating and Name
-- My Orders Section for details of all ordered item
-- Wishlist Add and Remove Items
-- Cart Add and Remove Items 
+- Highly Optimized Code Frontend + Backend Privateroutes
+- Cant Add more Than 5 Task each Day
+- get Tasks According to Dates
+- Add Futures Task  
 - Cart Update Quantities 
-- Address Management
-- Order Summary
+- Password Hashing 
+- JWT
 
 <br />
 
-## Glimpses of JustShop.com 🙈 :
+## Glimpses of Application 🙈 :
+
+
+
+
+
 
 
 
 
 <table>
   <tr>
-    <td><img maxW="50%" src="https://i.ibb.co/dfqgMwd/1.png"  alt="home" /></td>
-    <td><img maxW="50%" src="https://i.ibb.co/Ld6KDL8/2.png"  alt="coupons" /></td>
+    <td><img maxW="50%" src="https://i.ibb.co/dJs88gg/Capture.png"  alt="home" /></td>
+    <td><img maxW="50%" src="https://i.ibb.co/7y8qFdD/Capture2.png"  alt="coupons" /></td>
   </tr>
   <tr>
-   <td><img src="https://i.ibb.co/h1qrXBz/3.png"  alt="allProducts" /></td>
-    <td><img src="https://i.ibb.co/1rgKjBN/4.png"  alt="men" /></td>
+   <td><img src="https://i.ibb.co/CJdBMPq/Capture3.png"  alt="allProducts" /></td>
+    <td><img src="https://i.ibb.co/Jc3xXfy/Capture4.png"  alt="men" /></td>
   </tr>
+ 
   <tr>
-    <td><img src="https://i.ibb.co/hgKzhx8/5.png" alt="allProducts" /></td>
-    <td><img src="https://i.ibb.co/Ssqqj5b/6.png"  alt="men" /></td>
-  </tr>
-  <tr>
-    <td><img src="https://i.ibb.co/2YpTQ8F/7.png"  alt="women" /></td>
-    <td><img src="https://i.ibb.co/qgxgjTX/8.png"  alt="kids" /></td>
+    <td><img src="https://i.ibb.co/JtK8sw0/Capture5.png"  alt="women" /></td>
+    <td><img src="https://i.ibb.co/FVS3nXC/Capture555.png"  alt="kids" /></td>
   </tr>
    <tr>
-    <td><img src="https://i.ibb.co/w7QMFSm/9.png"   alt="women" /></td>
-    <td><img src="https://i.ibb.co/jVrqM5N/admin-1.png"   alt="kids" /></td>
+   
+    <td><img src="https://i.ibb.co/yPfkHzD/Capture55.png"   alt="kids" /></td>
   </tr>
-  <tr>
-    <td><img src="https://i.ibb.co/V2C33MP/admin-2.png"  alt="description" /></td>
-    <td><img src="https://i.ibb.co/r6ZFyXN/admin-3.png"   alt="descriptionDark" /></td>
-  </tr>
-    <tr>
-    <td><img src="https://i.ibb.co/XW6J312/admin5.png"   alt="description" /></td>
-  
-  </tr>
-    <tr>
-        <td><img maxW="100%" src="https://i.ibb.co/8dqSn8t/justshop4.png" alt="justshop4"  /></td>
-    <td><img maxW="50%" src="https://i.ibb.co/rHQwR06/mobile-2.png"   alt="description" /></td>
-  
-  </tr>
+ 
+   
 
 </table>
 
 <br />
-
-
-
-## Getting Started
-
-This project was built using React, Chakra UI, HTML, CSS, JavaScript, Rest API . It is an e-commerce web application and for running on your local environment you should follow these guidelines.
-
-
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-
-### Tools used on this project
-
-- Visual Studio Code
-- Vite-JS template
-
-<br />
-
 
 
 ## Contact
