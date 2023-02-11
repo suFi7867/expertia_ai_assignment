@@ -8,18 +8,49 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
 
-export default function Home({user}) {
+
+export default function Home() {
 
   const data = [
     "Take the dog for a walk",
     "Cook breakfast",
     "Finish pending tasks for the project"
   ]
-  const [loading, setLoading] = useState(false)
+
+  const initialDate = {
+    dd : 0 ,
+    mm : 0 ,
+    yyyy : 0
+  }
+  
+
+  const [DailyTask, setDailyTask] = useState([])
+  const [Date, setDate] = useState(initialDate)
+  const [username, setUsername] = useState("")
+  const [loading, setLoading] = useState(true)
   const router = useRouter()
   
 
-  console.log(user)
+  useEffect(()=>{  
+    let { dd, mm, yyyy } = taskService.CurrDate()
+    setDate({ dd, mm, yyyy })
+  },[])
+
+  useEffect(()=>{
+    taskService.getTasks(Cookies.get("jwt"), Cookies.get("id"))
+      .then((res) => {
+
+        let data =
+          res.tasks.filter((el) => el.dateF == Date.dd + Date.mm + Date.yyyy)
+        setDailyTask([...data])
+        setUsername(res.username)
+        setLoading(false)
+      })
+  }, [Date])
+
+
+  
+
 
   const LogOut = ()=>{
 
@@ -35,6 +66,8 @@ export default function Home({user}) {
     
   }
 
+
+  
 
   if (loading) return <LoadingIndicator />
 
@@ -55,8 +88,8 @@ export default function Home({user}) {
         <div className='p-5'>
           <ul className='list-disc'>
             {
-              data.map((el) => (
-                <li className='text-[16px]'>{el}</li>
+              DailyTask && DailyTask.map((el) => (
+                <li className='text-[16px]'>{el.task}</li>
               ))
             }
           </ul>
@@ -90,6 +123,21 @@ export default function Home({user}) {
   )
 }
 
+// export async function getServerSideProps() {
+  
+//   try {
+//     const result = "await axios.get(`${API_URL}/public_setlists/${id}`);"
+//     let setlist = "result.data";
+//     taskService.getTasks(Cookies.get("jwt"), Cookies.get("id"))
+//     .then((res)=> console.log(res))
+//     //setlist.songs?.sort((songA, songB) => songA.position - songB.position);
+//     return { props: { setlist } };
+//   } catch (error) {
+//     return { props: { setlist: null } };
+//   }
+
+// }
+
 
 // this function will call before redering
 // export const getServerSideProps = async (context) => {
@@ -114,6 +162,21 @@ export default function Home({user}) {
 //   }
 
 // }
+
+
+//// [Dynamic All Dates Data ]
+// const result = res.tasks.reduce((acc, curr) => {
+//   const dateF = curr.dateF;
+//   const found = acc.find(item => item[0].dateF === dateF);
+//   if (found) {
+//     found.push(curr);
+//   } else {
+//     acc.push([curr]);
+//   }
+//   return acc;
+// }, []);
+
+// sellDayTask([...result])
 
 
 

@@ -3,6 +3,8 @@ import { BASE_URL } from "../utils";
 
 const getTasks = async (token, id) => {
     
+    console.log("getTasks is Running" , id)
+
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -11,6 +13,7 @@ const getTasks = async (token, id) => {
 
     if(id){
         const res = await axios.get(`${BASE_URL}/user/task/${id}`, config);
+        console.log(res.data)
         return res.data;
     }
 
@@ -29,18 +32,36 @@ const addTasks = async (todo, token) => {
     const bodyData = {
         todo: todo,
     };
-    const response = await axios.post(
+    const res = await axios.post(
         `${BASE_URL}/rest/todos/`,
         bodyData,
         config
     );
-    return response.data;
+    return res.data;
 };
+
+
+const CurrDate = () => {
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1; // January is 0!
+    let yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    today = { dd, mm, yyyy }
+    return (today)
+}
 
 
 const taskService = {
     getTasks,
-    addTasks
+    addTasks,
+    CurrDate
 };
 
 export default taskService;
