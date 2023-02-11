@@ -1,5 +1,6 @@
 
 import LoadingIndicator from "@/components/LoadingIndicator"
+import Task from "@/components/Task"
 import authService from "@/services/authServices"
 import taskService from "@/services/taskServices"
 import Cookies from "js-cookie"
@@ -11,50 +12,52 @@ import { useEffect, useState } from "react"
 
 export default function Home() {
 
-  const data = [
-    "Take the dog for a walk",
-    "Cook breakfast",
-    "Finish pending tasks for the project"
-  ]
-
   const initialDate = {
     dd : 0 ,
     mm : 0 ,
     yyyy : 0,
     Month : "",
-    dateFormat : ""
   }
   
-
+ // task Data
   const [DailyTask, setDailyTask] = useState([])
+  const [inputTask, setinputTask] = useState("")
+
   const [CurrDate, setCurrDate] = useState(initialDate)
   const [Date, setDate] = useState(initialDate)
   const [username, setUsername] = useState("")
+
+  // for Loading Indicator
   const [loading, setLoading] = useState(true)
   const router = useRouter()
   
 
-  useEffect(()=>{  
+  useEffect(()=>{   
     let { dd, mm, yyyy, Month } = taskService.CurrDate()
+
     setDate({ dd, mm, yyyy, Month })
     setCurrDate({ dd, mm, yyyy, Month })
-    console.log(DailyTask)
   },[])
 
+
   useEffect(()=>{
+    fetchData()
+  }, [Date])
+
+
+  const fetchData = ()=>{
+
     taskService.getTasks(Cookies.get("jwt"), Cookies.get("id"))
       .then((res) => {
-
         let data =
           res.tasks.filter((el) => el.dateF == Date.dd + Date.mm + Date.yyyy)
         setDailyTask([...data])
         setUsername(res.username)
         setLoading(false)
       })
-  }, [Date])
 
+  }
 
-  
 
 
   const LogOut = ()=>{
@@ -68,12 +71,28 @@ export default function Home() {
         router.push("/register");
       } 
     })
-    
+
+  }
+
+  const AddTasksDynamically = ()=>{
+
+    if (DailyTask.length >=5 ) return alert("Daily Tasks limit exceeded, try Diffirent Date")
+
+    const data = { 
+      username, task: inputTask, dateF: Date.dd + Date.mm + Date.yyyy 
+    }
+
+    taskService.addTasks(data, Cookies.get("jwt"))
+    .then((res)=>{
+      if(res == 200){
+        setinputTask("")
+        alert(`Task Added Successfully for ${ Date.dd }th ${ Date.Month }, ${ Date.yyyy }` )
+        fetchData()
+      }
+    })
   }
 
 
-
-  
 
   if (loading) return <LoadingIndicator />
 
@@ -89,6 +108,8 @@ export default function Home() {
         </div>
 
 
+
+{/* All Buttons  */}
         <div className="">
           <p className='text-[16px] mt-[20px] font-bold'>Tasks for {`${Date.dd}th ${Date.Month}, ${Date.yyyy}`} :</p>
 
@@ -107,24 +128,14 @@ export default function Home() {
 
       </div>
 
+
+
+{/* Tasks Div or Error Handeling  */}
         <div className='p-5'>
-          { DailyTask  &&
-             <ul className='list-disc'>
-               {
-                   DailyTask.map((el) => (
-                   <li className='text-[16px]'>{el.task}</li>
-                 ))
-               }
-             </ul>         
-          }
+          { DailyTask && <Task DailyTask={DailyTask} /> }
 
           {
-            DailyTask.length==0 && <div >
-             
-
-              <img className="mt-[-20px]" src="https://media.tenor.com/unvXyxtdn3oAAAAC/no-result.gif" alt="" srcset="" />
-           
-            </div>  
+            DailyTask.length==0 &&  <img className="mt-[-20px]" src="https://media.tenor.com/unvXyxtdn3oAAAAC/no-result.gif" alt="" srcset="" />
           }
         </div>
 
@@ -133,9 +144,11 @@ export default function Home() {
 
         <div className='absolute mt-[50px] bottom-0 w-[85%] justifycontent-center text-center'>
             <input
-            style={{ border: "0.5px solid" }} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] mb-3 rounded-[6px] focus:outline-none" id="username" type="name" placeholder="Eg. Need to finish my assignment . . ." />
+            onChange={(e)=>setinputTask(e.target.value)}
+            style={{ border: "0.5px solid" }} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] mb-3 rounded-[6px] focus:outline-none" id="username" type="name" placeholder="Add Tasks" />
       
           <button 
+            onClick={AddTasksDynamically}
             className='mb-4 bg-black text-white text-[18px] w-[100%] p-5 rounded-[6px] hover:bg-gray-500'>
             Add New Task
           </button>

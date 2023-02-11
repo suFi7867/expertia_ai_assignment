@@ -1,10 +1,10 @@
 import axios from "axios";
 import { BASE_URL } from "../utils";
 
-const getTasks = async (token, id) => {
-    
-    //console.log("getTasks is Running" , id)
 
+// get all the Task of Each user with Dynamic Dates
+const getTasks = async (token, id) => {  
+    //console.log("getTasks is Running" , id)
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -23,24 +23,31 @@ const getTasks = async (token, id) => {
     
 };
 
-const addTasks = async (todo, token) => {
+
+// Post request and its Dynamic for all Days and for each User
+const addTasks = async (data, token) => {
+    //console.log(data,token)
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     };
     const bodyData = {
-        todo: todo,
+        ...data
     };
     const res = await axios.post(
-        `${BASE_URL}/rest/todos/`,
+        `${BASE_URL}/user/task`,
         bodyData,
         config
     );
-    return res.data;
+    
+    if (res.status == 200) return 200;
+    else return 400
+    
 };
 
 
+// To get the Dates in Format
 const CurrDate = () => {
     let today = new Date();
     let dd = today.getDate();
