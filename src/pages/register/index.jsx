@@ -42,8 +42,9 @@ export default function Register() {
             .then((res) => {
                 if (res == 200) {
                     router.push("/");
+                    setLoading(false)
                 }
-                setLoading(false)
+                
             })
 
         setUserData(initialValue)
