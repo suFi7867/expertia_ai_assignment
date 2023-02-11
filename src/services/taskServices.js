@@ -5,7 +5,7 @@ import { BASE_URL } from "../utils";
 // get all the Task of Each user with Dynamic Dates
 
 const getTasks = async (token, id) => {  
-    console.log("getTasks is Running" , id)
+    //console.log("getTasks is Running" , id)
 
     if(!token || !id) return 400
 
@@ -17,7 +17,7 @@ const getTasks = async (token, id) => {
 
     if(id){
         const res = await axios.get(`${BASE_URL}/user/task/${id}`, config);
-       console.log(res.data)
+       //console.log(res.data)
         return res.data;
     }
     

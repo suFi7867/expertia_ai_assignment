@@ -160,14 +160,14 @@ export const getServerSideProps = async reqs => {
 
   const jwt = reqs.req.cookies.jwt;
   const id = reqs.req.cookies.id;
-  console.log(reqs.req)
+  //console.log(reqs.req)
 
 
   const res = await taskService.getTasks(jwt, id);
   let dates = taskService.CurrDate()
 
-  console.log(res)
-  
+ // console.log(res)
+
   if (res == 400) { // error handling
     return {
       props: {

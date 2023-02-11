@@ -18,6 +18,7 @@ export default function Register() {
     const [loading, setLoading] = useState(false)
     const router = useRouter();
 
+    // To update the form
     const handleChange = (e) => {
 
         const { name: key, value, type, checked } = e.target;
@@ -26,25 +27,26 @@ export default function Register() {
 
     };
 
-    const RefisterFunction = () => {
+    // To Register User
+    const RegisterFunction = () => {
 
-        if (userData.email == "" || userData.password == "" || userData.username == "" || userData.confirmPass == "" )
-        return alert("Enter Valid credentials")
+        if (userData.email == "" || userData.password == "" || userData.username == "" || userData.confirmPass == "")
+            return alert("Enter Valid credentials")
 
         if (userData.password != userData.confirmPass)
-        return alert("Both password not matching")
-        
-       setLoading(true)
+            return alert("Both password not matching")
 
-       authService.registerUser(userData)
-           .then((res) => {
-               if (res == 200) {
-                   router.push("/");
-               }
-               setLoading(false)
-           })
+        setLoading(true)
 
-       setUserData(initialValue)
+        authService.registerUser(userData)
+            .then((res) => {
+                if (res == 200) {
+                    router.push("/");
+                }
+                setLoading(false)
+            })
+
+        setUserData(initialValue)
     }
 
     if (loading) return <LoadingIndicator />
@@ -71,7 +73,7 @@ export default function Register() {
                             onChange={handleChange}
                             value={userData.email}
                             name="email"
-                            style={{ border: "0.5px solid" }} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] rounded-[6px] focus:outline-none"  type="email" placeholder="Enter Your Email" />
+                            style={{ border: "0.5px solid" }} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] rounded-[6px] focus:outline-none" type="email" placeholder="Enter Your Email" />
                     </div>
 
                     <div className="mb-5">
@@ -82,7 +84,7 @@ export default function Register() {
                             onChange={handleChange}
                             value={userData.username}
                             name="username"
-                            style={{ border: "0.5px solid" }} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] rounded-[6px] focus:outline-none"  type="name" placeholder=" Enter Your Username" />
+                            style={{ border: "0.5px solid" }} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] rounded-[6px] focus:outline-none" type="name" placeholder=" Enter Your Username" />
                     </div>
 
                     <div className="mb-4">
@@ -98,16 +100,17 @@ export default function Register() {
 
                     <div className="mb-4">
                         <label className="block text-sm font-bold mb-2 text-[16px] font-normal" >
-                           Confirm Password
+                            Confirm Password
                         </label>
                         <input
                             onChange={handleChange}
                             value={userData.confirmPass}
                             name="confirmPass"
-                            style={{ border: "0.5px solid" }} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] rounded-[6px] focus:outline-none"  type="password" placeholder="Confirm your password" />
+                            style={{ border: "0.5px solid" }} className="rounded w-full py-4 px-5 text-gray-500 text-[14px] rounded-[6px] focus:outline-none" type="password" placeholder="Confirm your password" />
                     </div>
 
-                    <button onClick={RefisterFunction}
+                    <button 
+                        onClick={RegisterFunction}
                         className='mt-5 mb-6 bg-black text-white text-[20px] w-[100%] p-5 rounded-[6px]'>
                         Register
                     </button>
@@ -121,7 +124,7 @@ export default function Register() {
 
             </div>
 
-            <MainImage/>
+            <MainImage />
 
         </div>
     )

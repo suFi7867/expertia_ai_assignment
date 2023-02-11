@@ -10,7 +10,6 @@ const registerUser = async (userData) => {
             `${BASE_URL}/user/register`,
             userData
         );
-
         // console.log(res.data)
         if (res.status == 200) {
             Cookies.set("jwt", res.data.token)
@@ -31,13 +30,13 @@ const registerUser = async (userData) => {
 
 const loginUser = async (userData) => {
 
-    try{
+    try {
         const res = await axios.post(
             `${BASE_URL}/user/login`,
             userData
         );
 
-       // console.log(res.data)
+        // console.log(res.data)
         if (res.status == 200) {
             Cookies.set("jwt", res.data.token)
             Cookies.set("username", res.data.username)
@@ -45,10 +44,10 @@ const loginUser = async (userData) => {
             alert("Login Successfull")
             return res.status;
         }
-    
-    }catch(e){
+
+    } catch (e) {
         // message from the backend to handle Errors 
-        if (e.response.data.message == "Authentication Failed"){
+        if (e.response.data.message == "Authentication Failed") {
             alert("Wrong Credentials")
             return 401
         }
@@ -56,9 +55,9 @@ const loginUser = async (userData) => {
         if (e.response.data.message == "No User Found") {
             alert("User does not exist, plz Sign Up")
             return 401
-        }    
+        }
     }
-   
+
 };
 
 const logoutUser = async () => {
