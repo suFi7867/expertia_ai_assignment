@@ -20,11 +20,14 @@ export default function Home() {
   const initialDate = {
     dd : 0 ,
     mm : 0 ,
-    yyyy : 0
+    yyyy : 0,
+    Month : "",
+    dateFormat : ""
   }
   
 
   const [DailyTask, setDailyTask] = useState([])
+  const [CurrDate, setCurrDate] = useState(initialDate)
   const [Date, setDate] = useState(initialDate)
   const [username, setUsername] = useState("")
   const [loading, setLoading] = useState(true)
@@ -32,8 +35,10 @@ export default function Home() {
   
 
   useEffect(()=>{  
-    let { dd, mm, yyyy } = taskService.CurrDate()
-    setDate({ dd, mm, yyyy })
+    let { dd, mm, yyyy, Month } = taskService.CurrDate()
+    setDate({ dd, mm, yyyy, Month })
+    setCurrDate({ dd, mm, yyyy, Month })
+    console.log(DailyTask)
   },[])
 
   useEffect(()=>{
@@ -67,6 +72,7 @@ export default function Home() {
   }
 
 
+
   
 
   if (loading) return <LoadingIndicator />
@@ -78,21 +84,48 @@ export default function Home() {
         <h1 className='text-[22px] font-light' >Hello !</h1>
 
         <div className='flex flex-col mt-[20px] font-medium' >
-          <h1 className='text-[30px] mb-[20px]' >John Doe </h1>
+          <h1 className='text-[30px] mb-[20px]' > {username && username } </h1>
           <p className='text-[16px]'>Good to see you again! </p>
         </div>
 
 
-        <p className='text-[16px] mt-[20px] font-bold'>Tasks for 24th Dec, 2022 :</p>
+        <div className="">
+          <p className='text-[16px] mt-[20px] font-bold'>Tasks for {`${Date.dd}th ${Date.Month}, ${Date.yyyy}`} :</p>
+
+          <div class="inline-flex gap-2 mt-2">
+            <button onClick={()=>setDate({...Date, dd : Date.dd-1})} class="bg-gray-300 text-[15px] hover:bg-gray-400 text-gray-800 font-bold h-[25px] px-[20px] rounded-l">
+              Prev
+            </button>
+
+            <button onClick={() => setDate({ ...CurrDate})} class="bg-gray-300 text-[15px] hover:bg-gray-400 text-gray-800 font-bold h-[25px] px-[20px] rounded-l">
+              Reset
+            </button>
+            <button onClick={()=>setDate({...Date, dd : Date.dd+1})}  class="bg-gray-300 text-[15px] hover:bg-gray-400 text-gray-800 font-bold h-[25px] px-[20px] rounded-r">
+              Next
+            </button>
+          </div>
+
+      </div>
 
         <div className='p-5'>
-          <ul className='list-disc'>
-            {
-              DailyTask && DailyTask.map((el) => (
-                <li className='text-[16px]'>{el.task}</li>
-              ))
-            }
-          </ul>
+          { DailyTask  &&
+             <ul className='list-disc'>
+               {
+                   DailyTask.map((el) => (
+                   <li className='text-[16px]'>{el.task}</li>
+                 ))
+               }
+             </ul>         
+          }
+
+          {
+            DailyTask.length==0 && <div >
+             
+
+              <img className="mt-[-20px]" src="https://media.tenor.com/unvXyxtdn3oAAAAC/no-result.gif" alt="" srcset="" />
+           
+            </div>  
+          }
         </div>
 
 
@@ -112,9 +145,7 @@ export default function Home() {
             className='mb-8 w-[100px]  text-[18px] w-[100%] rounded-[6px] justify-self-center hover:scale-125'>
             Logout
           </button>
-         
-        
-
+    
         </div>
 
       </div>

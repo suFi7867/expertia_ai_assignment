@@ -3,7 +3,7 @@ import { BASE_URL } from "../utils";
 
 const getTasks = async (token, id) => {
     
-    console.log("getTasks is Running" , id)
+    //console.log("getTasks is Running" , id)
 
     const config = {
         headers: {
@@ -13,7 +13,7 @@ const getTasks = async (token, id) => {
 
     if(id){
         const res = await axios.get(`${BASE_URL}/user/task/${id}`, config);
-        console.log(res.data)
+       // console.log(res.data)
         return res.data;
     }
 
@@ -46,6 +46,7 @@ const CurrDate = () => {
     let dd = today.getDate();
     let mm = today.getMonth() + 1; // January is 0!
     let yyyy = today.getFullYear();
+    let Month = Date().split(" ")[1]
 
     if (dd < 10) {
         dd = '0' + dd;
@@ -53,7 +54,8 @@ const CurrDate = () => {
     if (mm < 10) {
         mm = '0' + mm;
     }
-    today = { dd, mm, yyyy }
+    let dateFormat = dd +  mm +  yyyy 
+    today = { dd, mm, yyyy, Month, dateFormat }
     return (today)
 }
 
