@@ -22,6 +22,7 @@ export default function Home({ dailyTask, userName, isloading, dates }) {
 
   // for Loading Indicator
   const [loading, setLoading] = useState(isloading)
+  const [Taskloading, setTaskLoading] = useState(false)
 
   const router = useRouter()
 
@@ -30,6 +31,7 @@ export default function Home({ dailyTask, userName, isloading, dates }) {
   }, [Date])
 
   const fetchData = () => {
+    setTaskLoading(true)
     taskService
       .getTasks(Cookies.get("jwt"), Cookies.get("id"))
       .then((res) => {
@@ -39,6 +41,7 @@ export default function Home({ dailyTask, userName, isloading, dates }) {
           setDailyTask([...data])
           setUsername(res.username)
           setLoading(false)
+          setTaskLoading(false)
         }
       })
   }
@@ -115,10 +118,15 @@ export default function Home({ dailyTask, userName, isloading, dates }) {
 
         {/* Tasks Div or Error Handeling  */}
         <div className='p-5'>
-          {DailyTask && <Task DailyTask={DailyTask} />}
+
+          {Taskloading ? <div className='ml-0 md:ml-[100px] lg:ml-[100px]  max-h-[200px] max-w-[200px]'>
+            <img className='max-w-[200px] max-h-[200px]' src='https://dltqhkoxgn1gx.cloudfront.net/img/posts/6-vue-loader-animation-libraries-to-reduce-your-bounce-rate-2.png' />
+          </div> : <Task DailyTask={DailyTask} /> }
+
+ 
 
           {
-            DailyTask.length == 0 && <img className="mt-[-20px]" src="https://media.tenor.com/unvXyxtdn3oAAAAC/no-result.gif" alt="no data found image" />
+            !Taskloading && DailyTask.length == 0 && <img className="mt-[-20px]" src="https://media.tenor.com/unvXyxtdn3oAAAAC/no-result.gif" alt="no data found image" />
           }
         </div>
 
